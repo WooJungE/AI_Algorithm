@@ -1,0 +1,29 @@
+// 추론 기반 알고리즘은 논리, 추론, 패턴 인식 등을 기반으로 하는 알고리즘
+// 코드 예시로는 Prolog(Programming in Logic)이 있음
+// Prolog은 논리 프로그래밍 언어 중 하나로, 문제를 논리적으로 표현하고 해결하는 데 사용
+
+% 부모 관계 정의
+parent(john, jim).
+parent(john, ann).
+parent(mary, jim).
+parent(mary, ann).
+parent(sue, tom).
+parent(tom, tim).
+
+% 형제 관계 정의
+sibling(X, Y) :- parent(Z, X), parent(Z, Y), X \= Y.
+
+% 조부모 관계 정의
+grandparent(X, Z) :- parent(X, Y), parent(Y, Z).
+
+% 실행 예시
+sibling(jim, ann). % true 출력
+grandparent(john, tim). % true 출력
+
+// 위 코드는 부모 관계, 형제 관계, 조부모 관계를 정의함
+// sibling(jim, ann)를 실행하면 true가 출력
+// jim과 ann은 형제 관계
+// grandparent(john, tim)을 실행하면 true가 출력
+// john은 tim의 조부모
+
+// Prolog을 사용하면 논리적인 문제를 표현하고 해결할 수 있음
