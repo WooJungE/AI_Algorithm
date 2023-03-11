@@ -1,1 +1,1 @@
-:computer:  AI_Algorithm  :computer:
+:robot:  AI_Algorithm  :robot:
