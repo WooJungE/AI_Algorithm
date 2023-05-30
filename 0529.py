@@ -1,7 +1,10 @@
 #선형조사법(linear probing)에 의한 오버플로 처리를 하는 삭제 연산을 수행하는 함수 lp_delete(key)를 완성해 보기
 
-M = 13					# 테이블의 크기
-def hashFn(key) :		# 해시 함수
+# 테이블의 크기
+M = 13	
+
+# 해시 함수
+def hashFn(key) :		
     return key % M
 
 def lp_delete(key) :
