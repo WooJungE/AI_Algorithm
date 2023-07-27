@@ -6,6 +6,7 @@
 def printNode(knapsack, level, weight, profit, bound, maxProfit):
     print("%d %-16s :  %3.1fKg 가치/한계합 = %5.1f / %5.1f > %5.1f(최고합)"%
           (level, knapsack, weight, profit, bound, maxProfit))
+	
 def knapSack_bnb(obj, knapsack, W, level, weight, profit, maxProfit, bound) : 
     printNode(knapsack, level, weight, profit, bound, maxProfit)
     if (level == len(obj)) :
@@ -13,9 +14,11 @@ def knapSack_bnb(obj, knapsack, W, level, weight, profit, maxProfit, bound) :
     if weight + obj[level][0] <= W :
         newWeight = weight + obj[level][0]
         newProfit = profit + obj[level][1]
+	    
         if newProfit > maxProfit :
             maxProfit = newProfit
         newBound  = bound2(obj, W, level, newWeight, newProfit)
+	    
         if newBound >= maxProfit :
             knapsack.append(obj[level][2])
             maxProfit = knapSack_bnb(obj, knapsack, W, level+1, newWeight, 
@@ -24,10 +27,12 @@ def knapSack_bnb(obj, knapsack, W, level, weight, profit, maxProfit, bound) :
     newWeight = weight
     newProfit = profit
     newBound  = bound2(obj, W, level, newWeight, newProfit)
+	
     if newBound >= maxProfit :
         maxProfit = knapSack_bnb(obj, knapsack, W, level+1, newWeight,
 									 newProfit, maxProfit, newBound) 
     return maxProfit
+	
 def bound2(arr, W, level, weight, profit) :
     if weight>W:
        return 0
@@ -35,19 +40,25 @@ def bound2(arr, W, level, weight, profit) :
     tWeight = weight
     j = level + 1
     n = len(arr)
+	
     while j < n and (tWeight+obj[j][0] <= W):
         tWeight += arr[j][0]
         pBound += arr[j][1]
         j+=1
+	    
     if(j<n) :
         pBound +=(W-tWeight) * (arr[j][1]/arr[j][0])
     return pBound
+	
 obj = []
 n = int(input())
+
 for i in range(n):
     w, p, name = input().split()
     obj.append((float(w), float(p), name))
+
 W = float(input())
 obj.sort(key= lambda e : e[1]/e[0], reverse=True)
+
 print(obj)
 print("0-1배낭문제(분기 한정): ", knapSack_bnb(obj, [], W, 0,0,0,0, 0) )
