@@ -1,4 +1,5 @@
 #정렬 문제를 축소 정복 기법으로 해결한 삽입 정렬 알고리즘을 구현
+
 def insertion_sort(A) :
     n = len(A)
     for i in range(1, n) :
